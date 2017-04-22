@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyCompositeIterator", "EasyCompositeIterator\EasyCompositeIterator.csproj", "{CFD46430-CD24-473C-BE1C-FC16D9E979AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{1BDA6722-1BAC-4886-9D97-62D5AC03C4F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFD46430-CD24-473C-BE1C-FC16D9E979AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD46430-CD24-473C-BE1C-FC16D9E979AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD46430-CD24-473C-BE1C-FC16D9E979AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD46430-CD24-473C-BE1C-FC16D9E979AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDA6722-1BAC-4886-9D97-62D5AC03C4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDA6722-1BAC-4886-9D97-62D5AC03C4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDA6722-1BAC-4886-9D97-62D5AC03C4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDA6722-1BAC-4886-9D97-62D5AC03C4F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
