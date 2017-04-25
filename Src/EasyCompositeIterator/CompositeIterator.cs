@@ -111,7 +111,17 @@ namespace EasyCompositeIterator
         }
 
         /// <summary>
-        /// Iterates the child elements of the specified element and creates a instance.
+        /// Tests if an element name exists.
+        /// </summary>
+        /// <param name="elementName">An element name.</param>
+        /// <returns>True of the element name exists; otherwise, false.</returns>
+        public bool IsNameExists(string elementName)
+        {
+            return this.core.IsNameExists(elementName);
+        }
+
+        /// <summary>
+        /// Iterates the child elements of the specified element and creates an instance.
         /// The target element must be single and have child elements.
         /// </summary>
         /// <typeparam name="TValue">Type of the return value.</typeparam>
@@ -124,6 +134,25 @@ namespace EasyCompositeIterator
             if (iterator == null)
             {
                 throw new InvalidOperationException("Target element name does not exists.");
+            }
+
+            return func(iterator);
+        }
+
+        /// <summary>
+        /// Iterates the child elements of the specified element and creates an instance.
+        /// If the elementName is not found, returns default(TValue).
+        /// </summary>
+        /// <typeparam name="TValue">Type of the return value.</typeparam>
+        /// <param name="elementName">An element name.</param>
+        /// <param name="func">Iterator function.</param>
+        /// <returns>The created instance.</returns>
+        public TValue SingleIfExist<TValue>(string elementName, Func<CompositeIterator<T>, TValue> func)
+        {
+            var iterator = this.core.CreateSubIteratorFirstOrDefault(elementName);
+            if (iterator == null)
+            {
+                return default(TValue);
             }
 
             return func(iterator);

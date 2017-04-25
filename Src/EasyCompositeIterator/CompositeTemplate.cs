@@ -144,6 +144,16 @@ namespace EasyCompositeIterator
         }
 
         /// <summary>
+        /// Tests if an element name exists.
+        /// </summary>
+        /// <param name="elementName">An element name.</param>
+        /// <returns>True of the element name exists; otherwise, false.</returns>
+        internal bool IsNameExists(string elementName)
+        {
+            return this.coreElements.Any(e => this.getNameFunc(e) == elementName);
+        }
+
+        /// <summary>
         /// Extracts the values of the specified child element.
         /// </summary>
         /// <typeparam name="TValue">Type of the value.</typeparam>
@@ -166,6 +176,22 @@ namespace EasyCompositeIterator
         internal CompositeIterator<T> CreateSubIteratorSingle(string elementName)
         {
             var target = this.coreElements.Single(e => this.getNameFunc(e) == elementName);
+            if (target == null)
+            {
+                return null;
+            }
+
+            return this.CreateSubIterator(target);
+        }
+
+        /// <summary>
+        /// Provides a new iterator for a sub first element specified by the elementName.
+        /// </summary>
+        /// <param name="elementName">An element name.</param>
+        /// <returns>Iterator.</returns>
+        internal CompositeIterator<T> CreateSubIteratorFirstOrDefault(string elementName)
+        {
+            var target = this.coreElements.FirstOrDefault(e => this.getNameFunc(e) == elementName);
             if (target == null)
             {
                 return null;
@@ -199,7 +225,8 @@ namespace EasyCompositeIterator
                 yield break;
             }
 
-            for (var i = 0; i < this.coreElements.Count; i++)
+            int i = 0;
+            while (i < this.coreElements.Count)
             {
                 var internalList = new List<T>(count);
                 for (var j = 0; j < count; j++)

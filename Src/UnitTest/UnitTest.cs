@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EasyCompositeIterator;
 using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -330,6 +331,46 @@ namespace UnitTest
                         });
                     return true;
                 });
+        }
+
+        /// <summary>
+        /// Tests Split method.
+        /// </summary>
+        [TestMethod]
+        [TestCategory(nameof(CompositeIterator<Composite>.Split))]
+        public void SplitTest()
+        {
+            var testResult = this.testIterator.SingleChild(
+                "ROOT",
+                root =>
+                {
+                    return root.SingleChild(
+                        "DSID",
+                        dsid =>
+                        {
+                            return dsid.SingleChild(
+                                "TEST",
+                                test =>
+                                {
+                                    var result = new List<int[]>();
+                                    foreach (var t in test.Split(2).Select(e => e.AsDynamic()))
+                                    {
+                                        var c = new int[2];
+                                        c[0] = t.YCOO;
+                                        c[1] = t.XCOO;
+                                        result.Add(c);
+                                    }
+
+                                    return result;
+                                });
+                        });
+                });
+
+            testResult.Count.Is(4);
+            testResult[0].Is(1, 2);
+            testResult[1].Is(3, 4);
+            testResult[2].Is(5, 6);
+            testResult[3].Is(7, 8);
         }
 
         /// <summary>
